@@ -1,0 +1,22 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  /* Giving it a modern 'mission control' feel */
+  background: linear-gradient(90deg, #005cbb 0%, #007bff 100%) !important;
+  color: white !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
