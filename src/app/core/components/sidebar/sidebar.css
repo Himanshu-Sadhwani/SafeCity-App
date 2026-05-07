@@ -1,0 +1,30 @@
+mat-nav-list {
+  padding-top: 16px !important;
+}
+
+.mat-mdc-list-item {
+  margin: 4px 12px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.mat-mdc-list-item:hover {
+  background-color: rgba(0, 92, 187, 0.08) !important;
+  color: #005cbb !important;
+}
+
+/* Active link style */
+.active-link {
+  background-color: rgba(0, 92, 187, 0.12) !important;
+  color: #005cbb !important;
+  font-weight: 600;
+}
+
+mat-icon {
+  margin-right: 8px;
+  color: #5f6368;
+}
+
+.mat-mdc-list-item:hover mat-icon {
+  color: #005cbb;
+}

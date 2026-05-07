@@ -1,0 +1,27 @@
+.layout-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  width: 260px;
+  background-color: #fcfcfc;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.02);
+}
+
+mat-sidenav-content {
+  background-color: #f4f7f9; /* Light slate background for content area */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  padding: 24px;
+  flex: 1;
+}

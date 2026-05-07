@@ -1,0 +1,12 @@
+<mat-sidenav-container class="mat-typography">
+  <mat-sidenav mode="side" opened class="safe-city-sidebar">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <main style="padding: 20px;">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

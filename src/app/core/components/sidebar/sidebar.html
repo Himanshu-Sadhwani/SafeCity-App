@@ -1,0 +1,23 @@
+<mat-nav-list>
+  <a mat-list-item 
+     routerLink="/dashboard" 
+     routerLinkActive="active-link"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon matListItemIcon>dashboard</mat-icon>
+    <div matListItemTitle>Dashboard</div>
+  </a>
+
+  <a mat-list-item 
+     routerLink="/incidents" 
+     routerLinkActive="active-link">
+    <mat-icon matListItemIcon>report_problem</mat-icon>
+    <div matListItemTitle>Incidents</div>
+  </a>
+
+  <a mat-list-item 
+     routerLink="/resources" 
+     routerLinkActive="active-link">
+    <mat-icon matListItemIcon>group</mat-icon>
+    <div matListItemTitle>Resources</div>
+  </a>
+</mat-nav-list>
