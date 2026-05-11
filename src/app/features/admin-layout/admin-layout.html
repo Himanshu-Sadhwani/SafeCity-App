@@ -1,0 +1,111 @@
+<!-- src/app/core/components/layout/layout.html -->
+<div class="app-shell">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <div class="sb-logo">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0
+               013.598 6 11.955 11.955 0 003 10c0 5.592 3.824 10.29
+               9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57
+               -.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286z"/>
+        </svg>
+      </div>
+      <span class="sb-name">SafeCity</span>
+    </div>
+
+    <div class="sb-section">Operations</div>
+    <a routerLink="/admin/users" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656
+             -.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7
+             20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0
+             019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      All Users
+    </a>
+    <a routerLink="/admin/incidents" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667
+             1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464
+             0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+      </svg>
+      Incidents
+    </a>
+    <a routerLink="/admin/dispatch" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      Dispatch
+    </a>
+    <a routerLink="/admin/patrol" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827
+             0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0
+             3 3 0 016 0z"/>
+      </svg>
+      Patrol
+    </a>
+
+    <div class="sb-section">Management</div>
+    <a routerLink="/admin/crisis" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945
+             M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104
+             0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+      </svg>
+      Crisis
+    </a>
+    <a routerLink="/admin/compliance" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2
+             2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0
+             012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+      </svg>
+      Compliance
+    </a>
+    <a routerLink="/admin/reports" routerLinkActive="active" class="sb-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0
+             012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0
+             01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+      Reports
+    </a>
+
+    <div class="sb-footer">
+      <a routerLink="/" class="sb-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2
+               2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0
+               011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Home
+      </a>
+      <a routerLink="/login" class="sb-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3
+               3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="shell-main">
+    <router-outlet />
+  </main>
+
+</div>

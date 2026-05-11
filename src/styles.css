@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/azure-blue.css";
+/* Add these lines to src/styles.css */
 
-html, body { 
-  height: 100%; 
-  margin: 0; 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* This ensures the material container fills the screen */
-mat-sidenav-container {
+/* Make sure app root fills full height */
+app-root {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }

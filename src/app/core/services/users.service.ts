@@ -22,14 +22,15 @@ export class UserService {
 
   // ── USERS ────────────────────────────────────────────────
   getAllUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/users`,
-      { headers: this.getHeaders() });
+  return this.http.get<any[]>(`${this.api}/user`,   // ← /user not /users
+    { headers: this.getHeaders() });
   }
 
+
   getUserById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.api}/users/${id}`,
-      { headers: this.getHeaders() });
-  }
+  return this.http.get<any>(`${this.api}/user/${id}`,
+    { headers: this.getHeaders() });
+}
 
   registerUser(user: any): Observable<any> {
   return this.http.post<any>(`${this.api}/user/register`, user,
@@ -44,7 +45,7 @@ export class UserService {
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.api}/users/${id}`,
+    return this.http.delete<any>(`${this.api}/user/delete/${id}`,  // ← /user/delete/{id}
       { headers: this.getHeaders() });
   }
 

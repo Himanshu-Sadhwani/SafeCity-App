@@ -1,12 +1,19 @@
-<mat-sidenav-container class="mat-typography">
-  <mat-sidenav mode="side" opened class="safe-city-sidebar">
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
+<div class="layout-container">
 
-  <mat-sidenav-content>
-    <app-header></app-header>
-    <main style="padding: 20px;">
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <!-- Header spans full width -->
+  <app-header></app-header>
+
+  <!-- Sidenav below header -->
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened>
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>

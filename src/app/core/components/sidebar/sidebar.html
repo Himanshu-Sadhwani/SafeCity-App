@@ -1,23 +1,62 @@
-<mat-nav-list>
-  <a mat-list-item 
-     routerLink="/dashboard" 
-     routerLinkActive="active-link"
-     [routerLinkActiveOptions]="{exact: true}">
-    <mat-icon matListItemIcon>dashboard</mat-icon>
-    <div matListItemTitle>Dashboard</div>
-  </a>
+<!-- src/app/core/components/sidebar/sidebar.html -->
 
-  <a mat-list-item 
-     routerLink="/incidents" 
-     routerLinkActive="active-link">
-    <mat-icon matListItemIcon>report_problem</mat-icon>
-    <div matListItemTitle>Incidents</div>
-  </a>
+<div class="sidebar-wrap">
 
-  <a mat-list-item 
-     routerLink="/resources" 
-     routerLinkActive="active-link">
-    <mat-icon matListItemIcon>group</mat-icon>
-    <div matListItemTitle>Resources</div>
-  </a>
-</mat-nav-list>
+  <!-- Operations -->
+  <div class="sb-section">Operations</div>
+  <mat-nav-list>
+    <a mat-list-item routerLink="/admin/users" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>group</mat-icon>
+      <div matListItemTitle>All Users</div>
+    </a>
+    <a mat-list-item routerLink="/admin/incidents" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>report_problem</mat-icon>
+      <div matListItemTitle>Incidents</div>
+    </a>
+    <a mat-list-item routerLink="/admin/dispatch" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>bolt</mat-icon>
+      <div matListItemTitle>Dispatch</div>
+    </a>
+    <a mat-list-item routerLink="/admin/patrol" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>location_on</mat-icon>
+      <div matListItemTitle>Patrol</div>
+    </a>
+  </mat-nav-list>
+
+  <mat-divider></mat-divider>
+
+  <!-- Management -->
+  <div class="sb-section">Management</div>
+  <mat-nav-list>
+    <a mat-list-item routerLink="/admin/crisis" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>local_fire_department</mat-icon>
+      <div matListItemTitle>Crisis</div>
+    </a>
+    <a mat-list-item routerLink="/admin/compliance" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>fact_check</mat-icon>
+      <div matListItemTitle>Compliance</div>
+    </a>
+    <a mat-list-item routerLink="/admin/reports" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>bar_chart</mat-icon>
+      <div matListItemTitle>Reports</div>
+    </a>
+  </mat-nav-list>
+
+  <mat-divider></mat-divider>
+
+  <!-- Account -->
+  <div class="sb-section">Account</div>
+  <mat-nav-list class="sb-footer-nav">
+    <a mat-list-item routerLink="/"
+       routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{exact: true}">
+      <mat-icon matListItemIcon>home</mat-icon>
+      <div matListItemTitle>Home</div>
+    </a>
+    <a mat-list-item routerLink="/login" routerLinkActive="active-link">
+      <mat-icon matListItemIcon>logout</mat-icon>
+      <div matListItemTitle>Logout</div>
+    </a>
+  </mat-nav-list>
+
+</div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../core/services/users.service';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-registeruser',
@@ -29,7 +30,8 @@ export class Registeruser {
   constructor(
     private userService: UserService,
     private router: Router,
-    private cdr: ChangeDetectorRef   // ← ADD THIS
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   togglePassword(): void {
@@ -47,8 +49,14 @@ export class Registeruser {
       return;
     }
 
+    if (!this.user.email.toLowerCase().endsWith('@gmail.com')) {
+      this.error = 'Only @gmail.com email addresses are accepted.';
+      this.cdr.detectChanges();
+      return;
+    }
+
     this.loading = true;
-    this.cdr.detectChanges();  // ← ADD THIS
+    this.cdr.detectChanges();
 
     const payload = {
       name:     this.user.name,
@@ -58,13 +66,27 @@ export class Registeruser {
       roleID:   Number(this.user.roleID)
     };
 
+    // Save before reset — needed for auto-login
+    const email    = this.user.email;
+    const password = this.user.password;
+
     this.userService.registerUser(payload).subscribe({
-      next: (res) => {
+      next: () => {
         this.loading = false;
-        this.success = `User "${res.name ?? this.user.name}" registered successfully!`;
-        this.cdr.detectChanges();  // ← ADD THIS
-        this.onReset();
-        setTimeout(() => this.router.navigate(['/getall']), 1800);
+        this.success = 'Account created! Logging you in…';
+        this.cdr.detectChanges();
+
+        // ✅ Auto-login with same credentials
+        this.authService.login(email, password).subscribe({
+          next: () => {
+            this.onReset();
+            this.authService.redirectAfterLogin();
+          },
+          error: () => {
+            this.onReset();
+            this.router.navigate(['/login']);
+          }
+        });
       },
       error: (err) => {
         this.loading = false;
@@ -84,7 +106,7 @@ export class Registeruser {
         } else {
           this.error = 'Registration failed. Please try again.';
         }
-        this.cdr.detectChanges();  // ← ADD THIS
+        this.cdr.detectChanges();
       }
     });
   }
@@ -93,6 +115,6 @@ export class Registeruser {
     this.user    = { name: '', email: '', phone: '', password: '', roleID: 0 };
     this.error   = '';
     this.success = '';
-    this.cdr.detectChanges();  // ← ADD THIS
+    this.cdr.detectChanges();
   }
 }

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/services/users.service';
 
 @Component({
@@ -43,8 +43,18 @@ export class Updateuser {
   constructor(
     private userService: UserService,
     private router: Router,
+    private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {}
+  ngOnInit(): void {
+  this.route.queryParams.subscribe(params => {
+    if (params['id']) {
+      this.userId = Number(params['id']);
+      this.cdr.detectChanges();
+      this.lookupUser();   // ← auto-lookup when ID comes from URL
+    }
+  });
+}
 
   // ── Step 1: Look up user by ID ──
   lookupUser(): void {
@@ -65,10 +75,10 @@ export class Updateuser {
       next: (data) => {
         // Pre-fill form with existing user data
         this.user = {
-          name:   data.name   || '',
-          phone:  data.phone  || '',
-          roleID: data.roleID || data.roleId || 0,
-          status: data.status || 'Active'
+        name:   data.userName || '',
+        phone:  data.phone    || '',
+        roleID: this.roles.find(r => r.label.toLowerCase() === data.roleName?.toLowerCase())?.id || 0,
+        status: data.status   || 'Active'
         };
         this.showForm  = true;
         this.lookingUp = false;
@@ -95,7 +105,7 @@ export class Updateuser {
       this.cdr.detectChanges();
       return;
     }
-
+    setTimeout(() => this.router.navigate(['/admin/users']), 1800);
     this.loading = true;
     this.cdr.detectChanges();
 
@@ -140,6 +150,7 @@ export class Updateuser {
     this.error    = '';
     this.success  = '';
     this.user     = { name: '', phone: '', roleID: 0, status: 'Active' };
+    this.router.navigate(['/admin/users']);
     this.cdr.detectChanges();
   }
 }
