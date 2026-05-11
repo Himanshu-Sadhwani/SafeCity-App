@@ -1,0 +1,120 @@
+<div class="citizen-shell">
+
+  <!-- ── HEADER ── -->
+  <header class="citizen-header">
+    <div class="h-brand">
+      <div class="h-logo">
+        <mat-icon>shield</mat-icon>
+      </div>
+      <span class="h-name">SafeCity</span>
+    </div>
+
+    <span class="h-spacer"></span>
+
+    <div class="h-right">
+      <button mat-icon-button class="h-icon-btn" title="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <!-- Profile Avatar -->
+      <div class="profile-wrap">
+        <button class="h-avatar" (click)="toggleProfile()">
+          {{ initials }}
+        </button>
+
+        <!-- Dropdown -->
+        <div class="profile-drop" *ngIf="profileOpen">
+          <div class="pd-header">
+            <div class="pd-avatar">{{ initials }}</div>
+            <div>
+              <div class="pd-name">{{ userName }}</div>
+              <div class="pd-role">Citizen</div>
+            </div>
+          </div>
+          <a class="pd-item" [routerLink]="profilePath" (click)="closeProfile()">
+            <mat-icon>person</mat-icon>My Profile
+          </a>
+          <a class="pd-item" routerLink="/citizen/profile/edit" (click)="closeProfile()">
+            <mat-icon>edit</mat-icon>Edit Account
+          </a>
+          <a class="pd-item" routerLink="/citizen/profile/password" (click)="closeProfile()">
+            <mat-icon>lock</mat-icon>Change Password
+          </a>
+          <mat-divider></mat-divider>
+          <div class="pd-item pd-danger" (click)="logout()">
+            <mat-icon>logout</mat-icon>Logout
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── BODY ── -->
+  <div class="citizen-body">
+
+    <!-- SIDEBAR -->
+    <aside class="citizen-sidebar">
+
+      <div class="sb-section">My Activity</div>
+      <mat-nav-list>
+        <a mat-list-item
+           routerLink="/citizen/incidents"
+           routerLinkActive="active-link">
+          <mat-icon matListItemIcon>report_problem</mat-icon>
+          <div matListItemTitle>Incidents</div>
+        </a>
+      </mat-nav-list>
+
+      <mat-divider></mat-divider>
+
+      <div class="sb-section">Account</div>
+      <mat-nav-list>
+        <a mat-list-item
+           [routerLink]="profilePath"
+           routerLinkActive="active-link">
+          <mat-icon matListItemIcon>person</mat-icon>
+          <div matListItemTitle>My Profile</div>
+        </a>
+        <a mat-list-item
+           routerLink="/"
+           routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon matListItemIcon>home</mat-icon>
+          <div matListItemTitle>Home</div>
+        </a>
+      </mat-nav-list>
+
+      <div class="sb-footer">
+        <mat-nav-list>
+          <a mat-list-item class="logout-item" (click)="logout()">
+            <mat-icon matListItemIcon>logout</mat-icon>
+            <div matListItemTitle>Logout</div>
+          </a>
+        </mat-nav-list>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="citizen-main">
+      <router-outlet></router-outlet>
+
+      <!-- Welcome screen shown when no child route is active -->
+      <div class="welcome-screen" *ngIf="showWelcome">
+        <div class="welcome-icon">
+          <mat-icon>shield</mat-icon>
+        </div>
+        <h2 class="welcome-title">Welcome, {{ userName }}!</h2>
+        <p class="welcome-sub">
+          You are logged in as a <strong>Citizen</strong>.<br/>
+          Use the sidebar to report or track your incidents.
+        </p>
+        <a routerLink="/citizen/incidents" class="btn-start">
+          <mat-icon>report_problem</mat-icon>
+          View My Incidents
+        </a>
+      </div>
+    </main>
+
+  </div>
+</div>

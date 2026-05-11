@@ -1,27 +1,28 @@
 .layout-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
-mat-sidenav-container {
+/* Sidenav fills remaining space below header */
+.sidenav-container {
   flex: 1;
+  overflow: hidden;
 }
 
 mat-sidenav {
-  width: 260px;
-  background-color: #fcfcfc;
-  border-right: 1px solid #e0e0e0;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.02);
+  width: 230px !important;
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: none !important;
+  overflow-y: auto !important;
 }
 
 mat-sidenav-content {
-  background-color: #f4f7f9; /* Light slate background for content area */
-  display: flex;
-  flex-direction: column;
+  background: #f8fafc !important;
 }
 
 main {
-  padding: 24px;
-  flex: 1;
+  padding: 0 !important;
+  height: 100%;
 }
