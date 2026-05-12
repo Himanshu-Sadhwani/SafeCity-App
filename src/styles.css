@@ -720,7 +720,7 @@ app-login { display: flex; height: 100vh; width: 100%; }
 .left-stats { display: flex; gap: 2.5rem; position: relative; }
 .stat-n { font-size: 2rem; font-weight: 700; color: #f1f5f9; line-height: 1; }
 .stat-l { font-size: 11px; color: #64748b; margin-top: 5px; text-transform: uppercase; letter-spacing: .8px; font-weight: 500; }
-.login-right { width: 700px; flex-shrink: 0; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 2rem; height: 100vh; overflow-y: auto; }
+.login-right { width: 600px; flex-shrink: 0; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 2rem; height: 100vh; overflow-y: auto; }
 .login-card { width: 100%; max-width: 400px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
 .forgot-row { text-align: right; margin-top: -6px; margin-bottom: 1.75rem; }
 .forgot-link { font-size: 13px; color: #e11d48; text-decoration: none; font-weight: 500; }
@@ -816,5 +816,5 @@ app-updateuser .btn-reset:hover { background: #f1f5f9; color: #0f172a; border-co
   .lookup-row { flex-direction: column; }
   .btn-lookup { width: 100%; justify-content: center; }
 }
- 
+
 
