@@ -17,7 +17,7 @@ export const routes: Routes = [
   { path: '',         component: Home },
   { path: 'login',    component: Login },
   { path: 'register', component: Registeruser },
-  { path: 'update',   component: Updateuser },
+  { path: 'admin/users/edit', component: Updateuser },
   { path: 'delete',   component: Deleteuser },
 
   // ── Citizen pages ──

@@ -146,7 +146,7 @@ export class Getallusers implements OnInit {
 
   // Navigate to update
   goToUpdate(id: number): void {
-    this.router.navigate(['/update'], { queryParams: { id } });
+    this.router.navigate(['/admin/users/edit'], { state: { id } });
   }
 
   // View user detail

@@ -4,13 +4,13 @@
   <div class="page-header">
     <div>
       <h1 class="page-title">Update User</h1>
-      <p class="page-subtitle">Look up a user by ID and update their details</p>
+      <p class="page-subtitle">Edit details for User</p>
     </div>
     <a routerLink="/admin/users" class="btn-back">
       <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
       </svg>
-      Back to Home
+      Back to Users
     </a>
   </div>
 
@@ -34,133 +34,77 @@
     </div>
   </div>
 
-  <!-- Form Card -->
-  <div class="form-card">
+  <!-- Loading state -->
+  <div class="form-card" *ngIf="fetching">
+    <div class="spinner-row">
+      <span class="spinner spinner-dark"></span>
+      Loading user details…
+    </div>
+  </div>
 
-    <!-- Step 1: User ID Lookup -->
+  <!-- Form Card -->
+  <div class="form-card" *ngIf="!fetching">
+
     <div class="section-header">
       <div class="section-icon">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5
+               m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
         </svg>
       </div>
-      <span>Find User</span>
+      <span>Edit Details — User </span>
     </div>
 
-    <div class="lookup-row">
-      <input
-        type="number"
-        class="form-input"
-        placeholder="Enter User ID e.g. 1"
-        [(ngModel)]="userId"
-        name="userId"
-      />
-      <button
-        type="button"
-        class="btn-lookup"
-        (click)="lookupUser()"
-        [disabled]="lookingUp"
-      >
-        <span *ngIf="!lookingUp">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    <!-- Name -->
+    <div class="form-group">
+      <label class="form-label">Full Name <span class="required">*</span></label>
+      <input type="text" class="form-input" placeholder="Full name"
+        [(ngModel)]="user.name" name="name"/>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label class="form-label">Phone Number <span class="required">*</span></label>
+      <input type="tel" class="form-input" placeholder="+91 98765 43210"
+        [(ngModel)]="user.phone" name="phone"/>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <label class="form-label">Role <span class="required">*</span></label>
+      <select class="form-select" [(ngModel)]="user.roleID" name="roleID">
+        <option [value]="0" disabled>Select a role…</option>
+        <option *ngFor="let r of roles" [value]="r.id">{{ r.label }}</option>
+      </select>
+    </div>
+
+    <!-- Status -->
+    <div class="form-group">
+      <label class="form-label">Status <span class="required">*</span></label>
+      <select class="form-select" [(ngModel)]="user.status" name="status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn-reset" (click)="onReset()">Cancel</button>
+      <button type="button" class="btn-submit" (click)="onSubmit()" [disabled]="loading">
+        <span *ngIf="!loading">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
           </svg>
-          Look Up
+          Save Changes
         </span>
-        <span *ngIf="lookingUp" class="spinner-row">
-          <span class="spinner spinner-dark"></span>
-          Searching…
+        <span *ngIf="loading" class="spinner-row">
+          <span class="spinner"></span>
+          Saving…
         </span>
       </button>
-    </div>
-
-    <!-- Step 2: Edit Form (shown after lookup) -->
-    <div *ngIf="showForm">
-
-      <div class="divider"></div>
-
-      <div class="section-header">
-        <div class="section-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5
-                 m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-          </svg>
-        </div>
-        <span>Edit Details — User #{{ userId }}</span>
-      </div>
-
-      <!-- Name -->
-      <div class="form-group">
-        <label class="form-label">Full Name <span class="required">*</span></label>
-        <input
-          type="text"
-          class="form-input"
-          placeholder="Full name"
-          [(ngModel)]="user.name"
-          name="name"
-        />
-      </div>
-
-      <!-- Phone -->
-      <div class="form-group">
-        <label class="form-label">Phone Number <span class="required">*</span></label>
-        <input
-          type="tel"
-          class="form-input"
-          placeholder="+91 98765 43210"
-          [(ngModel)]="user.phone"
-          name="phone"
-        />
-      </div>
-
-      <!-- Role -->
-      <div class="form-group">
-        <label class="form-label">Role <span class="required">*</span></label>
-        <select class="form-select" [(ngModel)]="user.roleID" name="roleID">
-          <option [value]="0" disabled>Select a role…</option>
-          <option *ngFor="let r of roles" [value]="r.id">{{ r.label }}</option>
-        </select>
-      </div>
-
-      <!-- Status -->
-      <div class="form-group">
-        <label class="form-label">Status <span class="required">*</span></label>
-        <select class="form-select" [(ngModel)]="user.status" name="status">
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- Actions -->
-      <div class="form-actions">
-        <button type="button" class="btn-reset" (click)="onReset()">
-          Cancel
-        </button>
-        <button
-          type="button"
-          class="btn-submit"
-          (click)="onSubmit()"
-          [disabled]="loading"
-        >
-          <span *ngIf="!loading">
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5 13l4 4L19 7"/>
-            </svg>
-            Save Changes
-          </span>
-          <span *ngIf="loading" class="spinner-row">
-            <span class="spinner"></span>
-            Saving…
-          </span>
-        </button>
-      </div>
-
     </div>
 
   </div>
