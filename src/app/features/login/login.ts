@@ -34,7 +34,7 @@ export class Login {
 
     if (!this.email || !this.password) {
       this.error = 'Please enter your email and password.';
-      this.cdr.detectChanges();
+       this.cdr.detectChanges();
       return;
     }
 
@@ -45,7 +45,7 @@ export class Login {
       next: () => {
         this.loading = false;
         this.cdr.detectChanges();
-        // Redirect based on role
+       // Redirect based on role
         this.authService.redirectAfterLogin();
       },
       error: (err) => {

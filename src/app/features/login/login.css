@@ -87,7 +87,7 @@
 
 /* ── Right Panel ── */
 .login-right {
-  width: 500px;
+  width: 700px;
   flex-shrink: 0;
   background: #f8fafc;
   display: flex;
