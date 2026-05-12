@@ -2,6 +2,7 @@
 import { Routes } from '@angular/router';
 import { Home }             from './features/home/home';
 import { Login }            from './features/login/login';
+import { ForgotPassword }   from './features/forgot-password/forgot-password';
 import { Registeruser }     from './features/registeruser/registeruser';
 import { Updateuser }       from './features/updateuser/updateuser';
 import { Deleteuser }       from './features/deleteuser/deleteuser';
@@ -15,8 +16,9 @@ export const routes: Routes = [
 
   // ── Public pages ──
   { path: '',         component: Home },
-  { path: 'login',    component: Login },
-  { path: 'register', component: Registeruser },
+  { path: 'login',            component: Login },
+  { path: 'forgot-password', component: ForgotPassword },
+  { path: 'register',        component: Registeruser },
   { path: 'update',   component: Updateuser },
   { path: 'delete',   component: Deleteuser },
 
