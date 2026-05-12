@@ -72,21 +72,11 @@ export class Registeruser {
 
     this.userService.registerUser(payload).subscribe({
       next: () => {
-        this.loading = false;
-        this.success = 'Account created! Logging you in…';
-        this.cdr.detectChanges();
-
-        // ✅ Auto-login with same credentials
-        this.authService.login(email, password).subscribe({
-          next: () => {
-            this.onReset();
-            this.authService.redirectAfterLogin();
-          },
-          error: () => {
-            this.onReset();
-            this.router.navigate(['/login']);
-          }
-        });
+      this.loading = false;
+      this.success = 'User registered successfully!';
+      this.cdr.detectChanges();
+      this.onReset();
+      setTimeout(() => this.router.navigate(['/admin/users']), 1500);
       },
       error: (err) => {
         this.loading = false;

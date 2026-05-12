@@ -134,7 +134,7 @@
               </div>
             </td>
             <td class="phone-cell">{{ u.phone }}</td>
-            <td><span class="badge badge-role">{{ u.roleName }}</span></td>
+            <td><span class="badge badge-role">{{ u.roleName?.replace('_', ' ') }}</span></td>
             <td>
               <span class="badge" [ngClass]="u.status === 'Active' ? 'badge-active' : 'badge-inactive'">
                 {{ u.status }}

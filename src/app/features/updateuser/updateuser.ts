@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
@@ -11,14 +11,10 @@ import { UserService } from '../../core/services/users.service';
   templateUrl: './updateuser.html',
   styleUrl: './updateuser.css'
 })
-export class Updateuser {
+export class Updateuser implements OnInit {
 
-  // Step 1 — lookup
   userId: number | null = null;
-  lookingUp = false;
-  notFound  = false;
 
-  // Step 2 — edit
   user = {
     name:   '',
     phone:  '',
@@ -35,8 +31,8 @@ export class Updateuser {
     { id: 6, label: 'City Administrator' },
   ];
 
-  showForm = false;
   loading  = false;
+  fetching = false;
   success  = '';
   error    = '';
 
@@ -46,56 +42,48 @@ export class Updateuser {
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {}
+
   ngOnInit(): void {
-  this.route.queryParams.subscribe(params => {
-    if (params['id']) {
-      this.userId = Number(params['id']);
-      this.cdr.detectChanges();
-      this.lookupUser();   // ← auto-lookup when ID comes from URL
-    }
-  });
+  // Read ID from navigation state — not visible in URL
+  const nav = this.router.getCurrentNavigation();
+  const stateId = nav?.extras?.state?.['id']
+    ?? history.state?.['id']; // fallback if page refreshed
+
+  if (stateId) {
+    this.userId = Number(stateId);
+    this.fetchUser();
+  } else {
+    // No ID passed — redirect back
+    this.router.navigate(['/admin/users']);
+  }
 }
 
-  // ── Step 1: Look up user by ID ──
-  lookupUser(): void {
-    if (!this.userId) {
-      this.error = 'Please enter a User ID.';
-      this.cdr.detectChanges();
-      return;
-    }
-
-    this.lookingUp = true;
-    this.notFound  = false;
-    this.showForm  = false;
-    this.error     = '';
-    this.success   = '';
+  fetchUser(): void {
+    this.fetching = true;
+    this.error    = '';
     this.cdr.detectChanges();
 
-    this.userService.getUserById(this.userId).subscribe({
+    this.userService.getUserById(this.userId!).subscribe({
       next: (data) => {
-        // Pre-fill form with existing user data
         this.user = {
-        name:   data.userName || '',
-        phone:  data.phone    || '',
-        roleID: this.roles.find(r => r.label.toLowerCase() === data.roleName?.toLowerCase())?.id || 0,
-        status: data.status   || 'Active'
+          name:   data.userName || '',
+          phone:  data.phone    || '',
+          roleID: this.roles.find(r => r.label.toLowerCase() === data.roleName?.toLowerCase())?.id || 0,
+          status: data.status   || 'Active'
         };
-        this.showForm  = true;
-        this.lookingUp = false;
+        this.fetching = false;
         this.cdr.detectChanges();
       },
       error: (err) => {
-        this.lookingUp = false;
-        this.notFound  = err.status === 404;
-        this.error     = err.status === 404
-          ? `User with ID ${this.userId} not found.`
-          : 'Lookup failed. Please try again.';
+        this.fetching = false;
+        this.error = err.status === 404
+          ? `User #${this.userId} not found.`
+          : 'Failed to load user. Please try again.';
         this.cdr.detectChanges();
       }
     });
   }
 
-  // ── Step 2: Submit update ──
   onSubmit(): void {
     this.error   = '';
     this.success = '';
@@ -105,7 +93,7 @@ export class Updateuser {
       this.cdr.detectChanges();
       return;
     }
-    setTimeout(() => this.router.navigate(['/admin/users']), 1800);
+
     this.loading = true;
     this.cdr.detectChanges();
 
@@ -121,7 +109,7 @@ export class Updateuser {
         this.loading = false;
         this.success = `User #${this.userId} updated successfully!`;
         this.cdr.detectChanges();
-        setTimeout(() => this.router.navigate(['/getall']), 1800);
+        setTimeout(() => this.router.navigate(['/admin/users']), 1800);
       },
       error: (err) => {
         this.loading = false;
@@ -145,12 +133,6 @@ export class Updateuser {
   }
 
   onReset(): void {
-    this.userId   = null;
-    this.showForm = false;
-    this.error    = '';
-    this.success  = '';
-    this.user     = { name: '', phone: '', roleID: 0, status: 'Active' };
     this.router.navigate(['/admin/users']);
-    this.cdr.detectChanges();
   }
 }
