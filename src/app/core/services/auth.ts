@@ -87,6 +87,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  // ── Forgot Password ────────────────────────────────────
+  forgotPassword(email: string, password: string, confirmPassword: string): Observable<any> {
+    return this.http.put<any>(`${this.api}/user/forgotpassword`, { email, password, confirmPassword });
+  }
+
   // ── Route after login based on role ───────────────────
   // Update redirectAfterLogin() in src/app/core/services/auth.service.ts
 
