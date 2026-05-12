@@ -11,7 +11,7 @@ import { MaterialModule } from '../../../shared/material.module';
   standalone: true,
   imports: [CommonModule, RouterLink, MatDivider, MaterialModule],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styles: []
 })
 export class HeaderComponent implements OnInit {
 

@@ -11,7 +11,7 @@ import { filter } from 'rxjs';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './getallusers.html',
-  styleUrl: './getallusers.css'
+  styles: []
 })
 export class Getallusers implements OnInit {
 

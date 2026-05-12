@@ -7,6 +7,6 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './admin-layout.html',
-  styleUrl: './admin-layout.css'
+  styles: []
 })
 export class LayoutComponent {}

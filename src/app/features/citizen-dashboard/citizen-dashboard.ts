@@ -24,7 +24,7 @@ import { filter } from 'rxjs';
     MaterialModule,
   ],
   templateUrl: './citizen-dashboard.html',
-  styleUrl: './citizen-dashboard.css'
+  styles: []
 })
 export class CitizenDashboard implements OnInit {
 

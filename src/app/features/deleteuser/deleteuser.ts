@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-deleteuser',
   imports: [],
   templateUrl: './deleteuser.html',
-  styleUrl: './deleteuser.css',
+  styles: []
 })
 export class Deleteuser {}

@@ -10,7 +10,7 @@ import { AuthService } from '../../core/services/auth';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './registeruser.html',
-  styleUrl: './registeruser.css'
+  styles: []
 })
 export class Registeruser {
 

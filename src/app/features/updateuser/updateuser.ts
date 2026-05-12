@@ -9,7 +9,7 @@ import { UserService } from '../../core/services/users.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './updateuser.html',
-  styleUrl: './updateuser.css'
+  styles: []
 })
 export class Updateuser implements OnInit {
 

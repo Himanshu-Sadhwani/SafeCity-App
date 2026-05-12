@@ -9,7 +9,7 @@ import { UserService } from '../../core/services/users.service';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './profile.html',
-  styleUrl: './profile.css'
+  styles: []
 })
 export class ProfileComponent implements OnInit {
 

@@ -9,7 +9,7 @@ import { UserService } from '../../core/services/users.service';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './admin-home.html',
-  styleUrl: './admin-home.css'
+  styles: []
 })
 export class AdminHome implements OnInit {
 
