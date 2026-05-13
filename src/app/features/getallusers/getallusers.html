@@ -113,7 +113,7 @@
       <table>
         <thead>
           <tr>
-            <th>#ID</th>
+            <th>ID</th>
             <th>User</th>
             <th>Phone</th>
             <th>Role</th>
@@ -123,7 +123,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let u of paginatedUsers">
-            <td class="id-cell">#{{ u.userId }}</td>
+            <td class="id-cell">{{ u.userId }}</td>
             <td>
               <div class="user-cell">
                 <div class="avatar">{{ initials(u.userName) }}</div>
@@ -256,8 +256,8 @@
              1 0 00-1 1v3M4 7h16"/>
       </svg>
     </div>
-    <h3 class="delete-title">Delete User #{{ deleteUserId }}?</h3>
-    <p class="delete-sub">This action cannot be undone.</p>
+    <h2>Are you sure?</h2>
+    <p>Do you really want to delete user <br> This action cannot be undone.</p>
     <div class="alert alert-error" *ngIf="deleteError" style="margin-bottom:1rem;">{{ deleteError }}</div>
     <div class="modal-footer">
       <button class="btn-modal-close" (click)="cancelDelete()">Cancel</button>

@@ -68,7 +68,9 @@ export class Updateuser implements OnInit {
         this.user = {
           name:   data.userName || '',
           phone:  data.phone    || '',
-          roleID: this.roles.find(r => r.label.toLowerCase() === data.roleName?.toLowerCase())?.id || 0,
+          roleID: this.roles.find(r =>
+            r.label.toLowerCase() === data.roleName?.replace(/_/g, ' ').toLowerCase()
+          )?.id || 0,
           status: data.status   || 'Active'
         };
         this.fetching = false;
